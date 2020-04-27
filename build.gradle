@@ -1,0 +1,52 @@
+plugins {
+    id 'net.minecrell.plugin-yml.bukkit' version '0.3.0'
+}
+
+apply plugin: 'java'
+
+group = pluginGroup
+version = pluginVersion
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'destroystokyo-repo'
+        url = 'https://repo.destroystokyo.com/repository/maven-public/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+}
+
+dependencies {
+    compileOnly 'com.destroystokyo.paper:paper-api:1.15.2-R0.1-SNAPSHOT'
+}
+
+bukkit {
+    name = 'UnitedServer'
+    main = 'cn.apisium.unitedserver.Main'
+
+    apiVersion = '1.13'
+
+    website = 'https://github.com/go-mc/UnitedServer'
+    author = 'Shirasawa'
+
+    commands {
+        unitedserver {
+            description = 'Switch a player to another server'
+            aliases = ['us']
+            usage = '/unitedserver <player> <server>'
+        }
+    }
+
+    permissions {
+        'unitedserver.use' {
+            description = 'Allows you to run the unitedserver command'
+            setDefault('OP')
+        }
+    }
+}
